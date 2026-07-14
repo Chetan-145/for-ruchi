@@ -1,0 +1,227 @@
+﻿Diagnose log at 2026-07-14T11:01:20Z
+
+AppPath: C:\Program Files\Git\mingw64\bin\git-credential-manager.exe
+InstallDir: C:\Program Files\Git\mingw64\bin\
+Version: 2.6.1+786ab03440ddc82e807a97c0e540f5247e44cec6
+
+------------
+Diagnostic: Environment
+Skipped: False
+Success: True
+Exception: None
+Log:
+OSType: Windows
+OSVersion: 10.0 (build 26100)
+Reading environment variables... OK
+ Variables:
+HOMEPATH=\Users\chetanshel
+DriverData=C:\Windows\System32\Drivers\DriverData
+COMPUTERNAME=CVC5478
+ViewClient_Keyboard.SubType=0
+GIT_TRACE2_PARENT_SID=c16073c7-3f19-437c-a600-ff347ca53a38
+CommonProgramFiles(x86)=C:\Program Files (x86)\Common Files
+ViewClient_Broker_Gateway_IP_Address=172.27.36.41
+OneDrive=C:\Users\chetanshel\OneDrive
+ViewClient_Keyboard.Layout=00000409
+ViewClient_Broker_DNS_Name=ct5-vdics-1-1.cybage.com
+ViewClient_Keyboard.Language=1033
+ViewClient_Language=en_IN
+ViewClient_Launch_ID=CT5-Dedicated-Project-VD
+ViewClient_Broker_Remote_IP_Address=172.27.36.103
+ViewClient_Broker_Farm_ID=ct5-dedicated-project-vd
+HOME=C:\Users\chetanshel
+PROCESSOR_REVISION=ad01
+tvdumpflags=8
+PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.CPL
+ViewClient_Displays.TopologyV3={
+	"displays": [
+		{
+			"width": 1920,
+			"height": 1080,
+			"left": 0,
+			"top": 0,
+			"bitsPerPixel": 32,
+			"isPrimary": true,
+			"dpi": 96,
+			"isHDR": false,
+			"refreshRate": 60
+		}
+	]
+}
+
+ViewClient_Windows_Timezone=India Standard Time
+ViewClient_Agent_ConnectTicks=1784006255
+TMP=C:\Users\CHETAN~1\AppData\Local\Temp
+TEMP=C:\Users\CHETAN~1\AppData\Local\Temp
+LOCALAPPDATA=C:\Users\chetanshel\AppData\Local
+MSYSTEM=MINGW64
+ViewClient_IP_Address=172.27.145.2
+TERM=xterm-256color
+ViewClient_Broker_GatewayType=SG-cohosted
+ViewClient_Type=Linux
+COLORTERM=truecolor
+windir=C:\WINDOWS
+USERDNSDOMAIN=CYBAGE.COM
+USERDOMAIN=CYBAGE
+ProgramFiles(x86)=C:\Program Files (x86)
+ViewClient_Device_UUID=F4:8E:38:9D:33:F5
+Path=C:/Program Files/Git/mingw64/libexec/git-core;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\chetanshel\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\CheckPoint\Endpoint Security\Endpoint Common\bin;C:\Program Files\nodejs\;C:\Program Files\Microsoft VS Code\bin;C:\Program Files\Git\cmd;C:\Users\chetanshel\AppData\Local\Programs\Python\Python312\Scripts\;C:\Users\chetanshel\AppData\Local\Programs\Python\Python312\;C:\Users\chetanshel\AppData\Local\Microsoft\WindowsApps;C:\Users\chetanshel\AppData\Roaming\npm;C:\Users\chetanshel\AppData\Local\Programs\Podman\
+PROCESSOR_LEVEL=6
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 173 Stepping 1, GenuineIntel
+TMPDIR=C:\Users\CHETAN~1\AppData\Local\Temp
+ViewClient_Broker_Tunnel_URL=https://ct5-vdics-1-1.cybage.com:443
+ViewClient_Displays.Number=1
+ViewClient_Displays.Topology={1920,1080,0,0,32,1}
+ViewClient_Machine_Name=52YQFD2
+PSModulePath=C:\Users\chetanshel\Documents\WindowsPowerShell\Modules;C:\Program Files\WindowsPowerShell\Modules;C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules
+PUBLIC=C:\Users\Public
+NUMBER_OF_PROCESSORS=4
+CommonProgramFiles=C:\Program Files (x86)\Common Files
+WT_SESSION=7a73d329-87fb-429c-aa50-a1100a475097
+ViewClient_Broker_GatewayHost=ct5desk.cybage.com
+WSLENV=WT_SESSION:WT_PROFILE_ID:
+USERPROFILE=C:\Users\chetanshel
+DADIR=C:\Program Files (x86)\CheckPoint\Endpoint Security\Endpoint Common
+ViewClient_Keyboard.Type=4
+PLINK_PROTOCOL=ssh
+ProgramData=C:\ProgramData
+ProgramW6432=C:\Program Files
+ProgramFiles=C:\Program Files (x86)
+ViewClient_Protocol=BLAST
+ViewClient_Displays.TopologyV2={1920,1080,0,0,32,1,96}
+WT_PROFILE_ID={61c54bbd-c2c6-5271-96e7-009a87ff44bf}
+ViewClient_TrueSSOUnlock=true
+ViewClient_Displays.SystemDpi=96
+ViewClient_Broker_URL=https://ct5desk.cybage.com:443
+ViewClient_Client_Version=8.15.0-14256322247
+SystemRoot=C:\WINDOWS
+ViewClient_Broker_GatewayLocation=Internal
+ViewClient_Broker_DomainName=CYBAGE
+SESSIONNAME=Console
+ViewClient_MAC_Address=F4:8E:38:9D:33:F5
+LC_CTYPE=C.UTF-8
+CommonProgramW6432=C:\Program Files\Common Files
+LOGONSERVER=\\CT-DC-5-2
+ViewClient_TZID=Asia/Kolkata
+GIT_EXEC_PATH=C:/Program Files/Git/mingw64/libexec/git-core
+ViewClient_Broker_Request_Path=172.27.36.103, 172.27.36.41
+USERDOMAIN_ROAMINGPROFILE=CYBAGE
+APPDATA=C:\Users\chetanshel\AppData\Roaming
+HOMEDRIVE=C:
+ViewClient_Broker_GatewayName=ct5-vdics-1-1.cybage.com
+ViewClient_Launch_SessionType=DESKTOP
+ViewClient_Broker_AuthMethod=saml
+ViewClient_Broker_Tunneled=true
+USERNAME=chetanshel
+PROCESSOR_ARCHITEW6432=AMD64
+PROCESSOR_ARCHITECTURE=x86
+ViewClient_LoggedOn_Username=vdi-test
+OS=Windows_NT
+ComSpec=C:\WINDOWS\system32\cmd.exe
+SystemDrive=C:
+ViewClient_Client_ID=BAAAABv5j069e6C4GN8iFGwKtFc=
+ViewClient_Broker_UserName=chetanshel
+ALLUSERSPROFILE=C:\ProgramData
+
+
+------------
+Diagnostic: File system
+Skipped: False
+Success: True
+Exception: None
+Log:
+Temporary directory is 'C:\Users\chetanshel\AppData\Local\Temp\'...
+Checking basic file I/O...
+Writing to temporary file 'C:\Users\chetanshel\AppData\Local\Temp\f4434ac0886ed048e643b19e'... OK
+Reading from temporary file 'C:\Users\chetanshel\AppData\Local\Temp\f4434ac0886ed048e643b19e'... OK
+Deleting temporary file 'C:\Users\chetanshel\AppData\Local\Temp\f4434ac0886ed048e643b19e'... OK
+Testing IFileSystem instance...
+UserHomePath: C:\Users\chetanshel
+UserDataDirectoryPath: C:\Users\chetanshel\.gcm
+GetCurrentDirectory(): C:\Users\chetanshel\love
+
+------------
+Diagnostic: Networking
+Skipped: False
+Success: True
+Exception: None
+Log:
+Checking networking and HTTP stack...
+Creating HTTP client... OK
+IsNetworkAvailable: True
+Sending HEAD request to http://example.com...Sending HEAD request to https://example.com... OK
+Acquiring free TCP port... OK
+Testing local HTTP loopback connections...
+Creating new HTTP listener for http://localhost:51611/... OK
+Waiting for loopback connection... OK
+Writing response... OK
+Waiting for response data... OK
+Loopback connection data OK
+
+------------
+Diagnostic: Git
+Skipped: False
+Success: True
+Exception: None
+Log:
+Getting Git version... OK
+Git version is '2.51.2.windows.1'
+Locating current repository...Git repository at 'C:/Users/chetanshel/love/.git'
+ OK
+Listing all Git configuration... OK
+Git configuration:
+file:C:/Program Files/Git/etc/gitconfig	diff.astextplain.textconv=astextplain
+file:C:/Program Files/Git/etc/gitconfig	filter.lfs.clean=git-lfs clean -- %f
+file:C:/Program Files/Git/etc/gitconfig	filter.lfs.smudge=git-lfs smudge -- %f
+file:C:/Program Files/Git/etc/gitconfig	filter.lfs.process=git-lfs filter-process
+file:C:/Program Files/Git/etc/gitconfig	filter.lfs.required=true
+file:C:/Program Files/Git/etc/gitconfig	http.sslbackend=schannel
+file:C:/Program Files/Git/etc/gitconfig	core.autocrlf=true
+file:C:/Program Files/Git/etc/gitconfig	core.fscache=true
+file:C:/Program Files/Git/etc/gitconfig	core.symlinks=false
+file:C:/Program Files/Git/etc/gitconfig	pull.rebase=false
+file:C:/Program Files/Git/etc/gitconfig	credential.helper=manager
+file:C:/Program Files/Git/etc/gitconfig	credential.https://dev.azure.com.usehttppath=true
+file:C:/Program Files/Git/etc/gitconfig	init.defaultbranch=master
+file:C:/Users/chetanshel/.gitconfig	credential.https://bitbucket.cybage.com.provider=bitbucket
+file:C:/Users/chetanshel/.gitconfig	credential.https://bitbucket.cybage.com.gcmauthority=basic
+file:C:/Users/chetanshel/.gitconfig	core.autocrlf=true
+file:C:/Users/chetanshel/.gitconfig	user.name=Chetan Shelokar
+file:C:/Users/chetanshel/.gitconfig	user.email=chetanshel@cybage.com
+file:C:/Users/chetanshel/.gitconfig	credential.authority=basic
+file:.git/config	core.repositoryformatversion=0
+file:.git/config	core.filemode=false
+file:.git/config	core.bare=false
+file:.git/config	core.logallrefupdates=true
+file:.git/config	core.symlinks=false
+file:.git/config	core.ignorecase=true
+file:.git/config	remote.origin.url=https://github.com/Chetan-145/for-ruchi.git
+file:.git/config	remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+
+
+------------
+Diagnostic: Credential storage
+Skipped: False
+Success: True
+Exception: None
+Log:
+ICredentialStore instance is of type: CredentialStore
+Writing test credential... OK
+Reading test credential... OK
+Deleting test credential... OK
+
+------------
+Diagnostic: Microsoft authentication (AAD/MSA)
+Skipped: False
+Success: True
+Exception: None
+Log:
+Broker is not enabled.
+Flow type is: Auto
+Gathering MSAL token cache data... OK
+CacheDirectory: C:\Users\chetanshel\AppData\Local\.IdentityService
+CacheFileName: msal.cache
+CacheFilePath: C:\Users\chetanshel\AppData\Local\.IdentityService\msal.cache
+Creating cache helper... OK
+Verifying MSAL token cache persistence... OK
+
