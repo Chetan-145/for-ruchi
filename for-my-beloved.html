@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Just Because</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep: #241522;
+    --bg-mid: #3c2440;
+    --bg-soft: #52304f;
+    --rose: #e8a6bd;
+    --rose-deep: #c97a97;
+    --gold: #d3ab72;
+    --cream: #f7ecdf;
+    --muted: #cba8b9;
+    --paper: #fbf3e7;
+    --paper-line: #e7d7c2;
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+
+  html,body{
+    min-height: 100vh;
+    background: radial-gradient(ellipse at 50% 0%, var(--bg-mid), var(--bg-deep) 70%);
+    font-family: 'EB Garamond', serif;
+    color: var(--cream);
+    overflow-x: hidden;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  }
+
+  .petal-field{ position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
+  .petal{
+    position: absolute; top: -5%; font-size: 14px; color: var(--rose);
+    opacity: 0.35; animation: drift linear infinite; filter: blur(0.2px);
+  }
+  @keyframes drift{
+    from{ transform: translateY(-10vh) translateX(0) rotate(0deg); }
+    to{ transform: translateY(110vh) translateX(40px) rotate(180deg); }
+  }
+
+  .stage{
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    position: relative; z-index: 1; padding: 24px;
+    transition: opacity 0.9s ease, visibility 0.9s ease;
+  }
+  .stage.hidden{ opacity: 0; visibility: hidden; pointer-events: none; position: absolute; inset: 0; }
+
+  .prompt{ text-align: center; }
+  .prompt .eyebrow{
+    font-family: 'Caveat', cursive; font-size: 1.4rem; color: var(--rose);
+    letter-spacing: 0.02em; display: block; margin-bottom: 6px; opacity: 0.9;
+  }
+
+  .envelope-wrap{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    perspective: 1200px;
+    margin: 10px 0 20px;
+}
+  .envelope{ width: 280px; height: 190px; position: relative; cursor: pointer; }
+  .env-body{
+    position: absolute; inset: 0;
+    background: linear-gradient(160deg, var(--bg-soft), var(--bg-mid));
+    border: 1px solid rgba(211,171,114,0.35);
+    border-radius: 4px;
+    box-shadow: 0 20px 45px rgba(0,0,0,0.45);
+  }
+  .env-body::before, .env-body::after{ content:""; position: absolute; bottom: 0; width: 0; height: 0; border-style: solid; }
+  .env-body::before{ left:0; border-width: 0 0 190px 140px; border-color: transparent transparent rgba(0,0,0,0.18) transparent; }
+  .env-body::after{ right:0; border-width: 190px 140px 0 0; border-color: transparent transparent transparent rgba(255,255,255,0.03); }
+  .env-flap{
+    position: absolute; top:0; left:0; right:0; height: 100px;
+    background: linear-gradient(200deg, var(--bg-mid), var(--bg-soft));
+    clip-path: polygon(0 0, 100% 0, 50% 78%);
+    transform-origin: top center;
+    transition: transform 0.85s cubic-bezier(.6,-0.28,.2,1.4);
+    border-radius: 4px 4px 0 0;
+    z-index: 3;
+  }
+  .envelope.open .env-flap{ transform: rotateX(178deg); z-index: 1; }
+  .seal{
+    position: absolute; top: 62px; left: 50%; transform: translate(-50%,-50%);
+    width: 46px; height: 46px; border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, var(--rose-deep), #8f3e57 75%);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4), inset 0 0 6px rgba(255,255,255,0.15);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Playfair Display', serif; font-style: italic; font-size: 1.1rem; color: var(--paper);
+    z-index: 4; transition: transform 0.4s ease, opacity 0.4s ease;
+  }
+  .envelope.open .seal{ transform: translate(-50%,-50%) scale(0); opacity: 0; }
+  .env-letter-peek{
+    position: absolute; left: 14px; right: 14px; bottom: 10px; height: 150px;
+    background: var(--paper); border-radius: 2px;
+    transform: translateY(96%);
+    transition: transform 0.85s cubic-bezier(.2,.8,.2,1) 0.15s;
+    z-index: 2; box-shadow: 0 -4px 16px rgba(0,0,0,0.25);
+  }
+  .envelope.open .env-letter-peek{ transform: translateY(6%); }
+
+  .hint{
+    margin-top: 26px; font-family: 'Caveat', cursive; font-size: 1.3rem;
+    color: var(--muted); animation: pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{ opacity: 0.55; transform: translateY(0); }
+    50%{ opacity: 1; transform: translateY(-3px); }
+  }
+
+  .letter-page{
+    position: relative; z-index: 1; display: flex; justify-content: center;
+    padding: 8vh 20px 14vh;
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.9s ease 0.2s, transform 0.9s ease 0.2s;
+  }
+  .letter-page.visible{ opacity: 1; transform: translateY(0); }
+
+  .paper{
+    width: min(640px, 100%);
+    background: var(--paper);
+    color: #3a2a30;
+    border-radius: 3px;
+    box-shadow: 0 30px 70px rgba(0,0,0,0.5);
+    padding: 56px 48px 64px;
+    position: relative;
+  }
+  .paper::before{
+    content:""; position: absolute; inset: 14px;
+    border: 1px solid var(--paper-line); pointer-events: none;
+  }
+
+.intro-text{
+    width: 100%;
+    max-width: 380px;
+    margin: 18px auto 30px;
+    text-align: center;
+
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    line-height: 1.7;
+
+    color: var(--muted);
+}
+
+.hint{
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
+
+    font-family: 'Caveat', cursive;
+    font-size: 1.35rem;
+    color: var(--rose);
+
+    animation: pulse 2.4s ease-in-out infinite;
+}
+  .letter-head{ text-align: center; margin-bottom: 34px; }
+  .letter-head .to{ font-family: 'Caveat', cursive; font-size: 1.8rem; color: var(--rose-deep); }
+  .letter-head .headline{
+    font-family: 'Playfair Display', serif; font-style: italic; font-weight: 500;
+    font-size: 2rem; margin-top: 4px; color: #4a2e35;
+  }
+  .line{
+    display:block; width: 60px; height: 2px; margin: 18px auto 30px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .intro p{ font-size: 1.18rem; line-height: 1.85; margin-bottom: 8px; }
+  .intro p:first-of-type::first-letter{
+    font-family: 'Playfair Display', serif; font-size: 2.6rem; float: left;
+    line-height: 0.8; padding: 6px 8px 0 0; color: var(--rose-deep); font-style: italic;
+  }
+
+  .section{ margin-top: 48px; padding-top: 32px; border-top: 1px dashed var(--paper-line); }
+  .section .eyebrow{
+    font-family: 'Caveat', cursive; font-size: 1.6rem; color: var(--rose-deep);
+    display:block; margin-bottom: 18px;
+  }
+
+  .memory{ margin-bottom: 26px; }
+  .memory h3{
+    font-family: 'Playfair Display', serif; font-style: italic; font-weight: 600;
+    font-size: 1.25rem; color: #4a2e35; margin-bottom: 8px;
+  }
+  .memory p{ font-size: 1.08rem; line-height: 1.8; }
+
+  ul.reasons-list{ list-style: none; }
+  ul.reasons-list li{
+    position: relative; padding-left: 26px; margin-bottom: 13px;
+    font-size: 1.05rem; line-height: 1.6;
+  }
+  ul.reasons-list li::before{
+    content: "♡"; position: absolute; left: 0; top: 1px;
+    color: var(--rose-deep); font-size: 0.92rem;
+  }
+
+  .future-title{
+    text-align: center; font-family: 'Playfair Display', serif; font-style: italic;
+    font-weight: 600; font-size: 1.6rem; color: #4a2e35; margin-bottom: 22px;
+  }
+  ul.future-list{ list-style: none; }
+  ul.future-list li{
+    position: relative; padding-left: 28px; margin-bottom: 14px;
+    font-size: 1.08rem; line-height: 1.6;
+  }
+  ul.future-list li::before{
+    content: "✦"; position: absolute; left: 0; top: 2px;
+    color: var(--gold); font-size: 0.9rem;
+  }
+
+  .signature{
+    margin-top: 44px; text-align: right; font-family: 'Caveat', cursive;
+    font-size: 2.1rem; color: var(--rose-deep);
+  }
+
+  .reveal{ opacity: 0; transform: translateY(14px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.shown{ opacity: 1; transform: translateY(0); }
+
+  .footer-note{
+    text-align: center; margin-top: 60px; color: var(--muted);
+    font-family: 'Caveat', cursive; font-size: 1.2rem;
+    position: relative; z-index: 1; padding-bottom: 40px;
+  }
+</style>
+</head>
+<body>
+
+<div class="petal-field" id="petalField"></div>
+
+<div class="stage" id="stage">
+  <div class="prompt">
+    <span class="eyebrow">For Ruchi ❤️</span>
+    <p class="intro-text">
+    Some stories deserve more than a text message.<br>
+    Ours deserved a letter.
+    </p>
+    <div class="envelope-wrap">
+      <div class="envelope" id="envelope">
+        <div class="env-body"></div>
+        <div class="env-letter-peek"></div>
+        <div class="env-flap"></div>
+        <div class="seal">✦</div>
+      </div>
+    </div>
+    <div class="hint">Open the envelope</div>
+  </div>
+</div>
+
+<div class="letter-page" id="letterPage">
+  <div class="paper">
+    <div class="letter-head">
+      <span class="to">To Ruchi,</span>
+      <div class="headline">just because.</div>
+      <span class="line"></span>
+    </div>
+
+    <div class="intro">
+      <p class="reveal">I didn't need a special occasion to write this. I just realized that some people deserve to hear how much they mean, even on the most ordinary day. You make my everyday life brighter without even trying. Somehow, every message, every call, and every little conversation with you becomes my favorite part of the day. So I wanted to leave you something that you'll always be able to come back to whenever you miss me.</p>
+    </div>
+
+    <div class="section">
+      <span class="eyebrow reveal">a few memories, close to my heart</span>
+
+      <div class="memory">
+        <h3 class="reveal">The day we became "us"</h3>
+        <p class="reveal">The day we officially became a couple is one of my favorite memories. I still remember how happy and excited I felt. Since then, every day has felt different because now I have someone I genuinely look forward to talking to.</p>
+      </div>
+
+      <div class="memory">
+        <h3 class="reveal">The little things</h3>
+        <p class="reveal">One thing I'll never get tired of is waiting for your messages and hearing your voice. Even on busy office days, talking to you becomes the best part of my day. You somehow make everything feel lighter.</p>
+      </div>
+
+      <div class="memory">
+        <h3 class="reveal">Our future</h3>
+        <p class="reveal">One of my biggest dreams is building a beautiful life with you. I want us to celebrate birthdays together, create countless memories, save for our home, get married, and one day look back at these early days with a smile.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <span class="eyebrow reveal">a few things off the top of my head</span>
+      <ul class="reasons-list">
+        <li class="reveal">I love how you make even an ordinary day feel special just by talking to me.</li>
+        <li class="reveal">I love your smile because it instantly makes my stress disappear.</li>
+        <li class="reveal">I love that you always encourage me and make me believe I can become a better person.</li>
+        <li class="reveal">I love how caring and kind you are, not just to me but to the people you love.</li>
+        <li class="reveal">I love that even though we're far apart, you've never made our relationship feel distant.</li>
+        <li class="reveal">I love that you're the first person I want to share every good piece of news with.</li>
+        <li class="reveal">I love how comfortable I feel around you. I never have to pretend to be someone else.</li>
+        <li class="reveal">I love that you're patient with me while we're working towards our future together.</li>
+        <li class="reveal">I love how excited I get whenever your name pops up on my phone.</li>
+        <li class="reveal">I love that you're not just my girlfriend, but also my best friend.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <span class="eyebrow reveal">reasons why I love you</span>
+      <ul class="reasons-list">
+        <li class="reveal">Because your smile makes my day better.</li>
+        <li class="reveal">Because you make me feel understood.</li>
+        <li class="reveal">Because you believe in me.</li>
+        <li class="reveal">Because you motivate me to work harder for our future.</li>
+        <li class="reveal">Because I can imagine spending my entire life with you.</li>
+        <li class="reveal">Because you make distance feel smaller.</li>
+        <li class="reveal">Because you make me laugh.</li>
+        <li class="reveal">Because you're beautiful inside and out.</li>
+        <li class="reveal">Because you accept me with my flaws.</li>
+        <li class="reveal">Because loving you feels effortless.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <div class="future-title reveal">Things I can't wait to do with you</div>
+      <ul class="future-list">
+        <li class="reveal">Celebrate your birthdays together instead of from a distance.</li>
+        <li class="reveal">Watch sunsets holding your hand.</li>
+        <li class="reveal">Travel together.</li>
+        <li class="reveal">Surprise you with little gifts.</li>
+        <li class="reveal">Meet our families and start the next chapter.</li>
+        <li class="reveal">Build our own home.</li>
+        <li class="reveal">Wake up beside you every morning.</li>
+        <li class="reveal">Grow old together.</li>
+      </ul>
+    </div>
+
+    <div class="signature reveal">— always, Chetan</div>
+  </div>
+</div>
+
+<div class="footer-note">made this just for you 🤍</div>
+
+<script>
+  const field = document.getElementById('petalField');
+  const symbols = ['♡','✦','❀'];
+  for(let i=0;i<16;i++){
+    const p = document.createElement('div');
+    p.className = 'petal';
+    p.textContent = symbols[Math.floor(Math.random()*symbols.length)];
+    p.style.left = Math.random()*100 + 'vw';
+    p.style.fontSize = (10 + Math.random()*14) + 'px';
+    p.style.animationDuration = (12 + Math.random()*14) + 's';
+    p.style.animationDelay = (Math.random()*10) + 's';
+    field.appendChild(p);
+  }
+
+  const envelope = document.getElementById('envelope');
+  const stage = document.getElementById('stage');
+  const letterPage = document.getElementById('letterPage');
+
+  envelope.addEventListener('click', () => {
+    if(envelope.classList.contains('open')) return;
+    envelope.classList.add('open');
+    setTimeout(() => {
+      stage.classList.add('hidden');
+      letterPage.classList.add('visible');
+      startRevealObserver();
+    }, 900);
+  });
+
+  function startRevealObserver(){
+    const targets = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('shown');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+    targets.forEach(t => io.observe(t));
+  }
+</script>
+
+</body>
+</html>
